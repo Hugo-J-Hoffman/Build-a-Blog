@@ -43,13 +43,13 @@ def blogs():
         if len(blog_body) == 0 and len(title) == 0:
             title_error = "Please enter more than one character"
             body_error = "Please enter more than one character"
-            return render_template('/newpost.html', body_error=body_error, title_error = title_error)
+            return render_template('/newpost.html', body_error=body_error, title_error = title_error, title = title, body = blog_body)
         if len(title) == 0:
             title_error = "Please enter more than one character"
-            return render_template('/newpost.html', title_error = title_error)
+            return render_template('/newpost.html', title_error = title_error, body = blog_body)
         if len(blog_body) == 0:
             body_error = "Please enter more than one character"
-            return render_template('/newpost.html', body_error=body_error)
+            return render_template('/newpost.html', body_error=body_error, title = title)
         new_blog = Blog(title=title, body=blog_body)
         db.session.add(new_blog)
         db.session.commit()
